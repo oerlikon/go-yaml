@@ -891,13 +891,13 @@ func yaml_emitter_process_tag(emitter *yaml_emitter_t) bool {
 func yaml_emitter_process_scalar(emitter *yaml_emitter_t) bool {
 	switch emitter.scalar_data.style {
 	case yaml_PLAIN_SCALAR_STYLE:
-		return yaml_emitter_write_plain_scalar(emitter, emitter.scalar_data.value, !emitter.simple_key_context)
+		return yaml_emitter_write_plain_scalar(emitter, emitter.scalar_data.value, false)
 
 	case yaml_SINGLE_QUOTED_SCALAR_STYLE:
-		return yaml_emitter_write_single_quoted_scalar(emitter, emitter.scalar_data.value, !emitter.simple_key_context)
+		return yaml_emitter_write_single_quoted_scalar(emitter, emitter.scalar_data.value, false)
 
 	case yaml_DOUBLE_QUOTED_SCALAR_STYLE:
-		return yaml_emitter_write_double_quoted_scalar(emitter, emitter.scalar_data.value, !emitter.simple_key_context)
+		return yaml_emitter_write_double_quoted_scalar(emitter, emitter.scalar_data.value, false)
 
 	case yaml_LITERAL_SCALAR_STYLE:
 		return yaml_emitter_write_literal_scalar(emitter, emitter.scalar_data.value)
