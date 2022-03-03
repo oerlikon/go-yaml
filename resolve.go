@@ -34,10 +34,10 @@ func init() {
 		tag string
 		l   []string
 	}{
-		{true, yaml_BOOL_TAG, []string{"y", "Y", "yes", "Yes", "YES"}},
+		{true, yaml_BOOL_TAG, []string{"yes", "Yes", "YES"}},
 		{true, yaml_BOOL_TAG, []string{"true", "True", "TRUE"}},
 		{true, yaml_BOOL_TAG, []string{"on", "On", "ON"}},
-		{false, yaml_BOOL_TAG, []string{"n", "N", "no", "No", "NO"}},
+		{false, yaml_BOOL_TAG, []string{"no", "No", "NO"}},
 		{false, yaml_BOOL_TAG, []string{"false", "False", "FALSE"}},
 		{false, yaml_BOOL_TAG, []string{"off", "Off", "OFF"}},
 		{nil, yaml_NULL_TAG, []string{"", "~", "null", "Null", "NULL"}},
@@ -180,7 +180,7 @@ func resolve(tag string, in string) (rtag string, out interface{}) {
 					return yaml_INT_TAG, uintv
 				}
 			} else if strings.HasPrefix(plain, "-0b") {
-				intv, err := strconv.ParseInt("-" + plain[3:], 2, 64)
+				intv, err := strconv.ParseInt("-"+plain[3:], 2, 64)
 				if err == nil {
 					if true || intv == int64(int(intv)) {
 						return yaml_INT_TAG, int(intv)
