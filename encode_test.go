@@ -406,16 +406,6 @@ func (s *S) TestLineWrapping(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(string(data), Equals,
 		"a: 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890 abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890 '\n")
-
-	// The API does not allow this process to be reversed as it's intended
-	// for migration only. v3 drops this method and instead offers more
-	// control on a per encoding basis.
-	yaml.FutureLineWrap()
-
-	data, err = yaml.Marshal(v)
-	c.Assert(err, IsNil)
-	c.Assert(string(data), Equals,
-		"a: 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890 abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890 '\n")
 }
 
 func (s *S) TestMarshal(c *C) {
